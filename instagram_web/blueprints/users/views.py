@@ -22,14 +22,12 @@ def create_new_form():
     nu = User(username=request.form.get('username'), email=request.form. get(
         'email'), password=generate_password_hash(request.form.get('password')))
 
-    #hashed_password = generate_password_hash(nu.password)
-
     if nu.save():
         flash("succesfully created a new user")
         return redirect(url_for('users.new'))
     else:
         flash("Not Succesfull in creating new user")
-        return render_template('new.html')
+        return render_template('users/new.html')
 
 
 @users_blueprint.route('/', methods=['POST'])
