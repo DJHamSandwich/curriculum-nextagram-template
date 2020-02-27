@@ -1,4 +1,4 @@
-{% extends "_layout.html" %}
+{% extends "layout.html" %}
 
 {% block title %}
 Homepage
@@ -9,5 +9,7 @@ Homepage
 
 {% block content %}
 <h1>Homepage</h1>
-<a href="{{url_for('users.new')}}" class="btn">create a new user</a>
+<a href="{{url_for('users.new')}}" class="btn">Create a new user</a>
+
+<a href="{{url_for('sessions.new')}}" class="btn">Login</a>
 {% endblock %}

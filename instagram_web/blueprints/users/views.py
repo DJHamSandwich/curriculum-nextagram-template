@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash
 users_blueprint = Blueprint('users',
                             __name__,
                             template_folder='templates')
+
 app = Blueprint('home', __name__)
 
 
@@ -18,7 +19,7 @@ def new():
 
 
 @users_blueprint.route('/new_form', methods=['POST'])
-def create_new_form():
+def create():
     nu = User(username=request.form.get('username'), email=request.form. get(
         'email'), password=generate_password_hash(request.form.get('password')))
 
@@ -28,11 +29,6 @@ def create_new_form():
     else:
         flash("Not Succesfull in creating new user")
         return render_template('users/new.html')
-
-
-@users_blueprint.route('/', methods=['POST'])
-def create():
-    pass
 
 
 @users_blueprint.route('/<username>', methods=["GET"])
