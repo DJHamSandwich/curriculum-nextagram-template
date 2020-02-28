@@ -4,13 +4,12 @@ from models.base_model import BaseModel
 from models.user import User
 from models import user
 from werkzeug.security import generate_password_hash
+from flask_login import login_user, logout_user, login_required, current_user
 
 
 users_blueprint = Blueprint('users',
                             __name__,
                             template_folder='templates')
-
-# app = Blueprint('home', __name__)
 
 
 @users_blueprint.route('/new', methods=['GET'])
@@ -42,18 +41,39 @@ def index():
 
 
 @users_blueprint.route('/<id>/edit', methods=['GET'])
+@login_required
 def edit(id):
-    pass
+
+    user = User.get_or_none(User.id == id)
+
+    if not user:
+        flash('user does not exist')
+        return redirect(url_for('home'))
+
+    if not current_user.id == user.id:  # current_user method is
+        flash('you are not allowed to vieew this page')
+        return redirect(url_for('home'))
+
+    return render_template('users/edit.html', user=user)
 
 
 @users_blueprint.route('/<id>', methods=['POST'])
+@login_required
 def update(id):
-    pass
+    user = User.get_or_none(User.id == id)
 
+    username = request.form.get('username')
+    email = request.form.get('email')
 
-# @app.route("/")
-# def home():
-#     return render_template("home.html")
+    user.email = email
+    user.username = username
+
+    if user.save():
+        flash("Succesfully updated info!")
+        return redirect(url_for('users.edit', id=user.id))
+    else:
+        flash("Not Succesfull in updating info")
+        return render_template('users/edit.html')
 
 
 @users_blueprint.route("/user")

@@ -13,11 +13,11 @@ class User(BaseModel):
         duplicate_emails = User.get_or_none(User.email == self.email)
         password_len_check = User.get_or_none(password_length <= 6)
 
-        if password_len_check:
+        if password_len_check and not self.id:
             flash("Password must have more than 6 characters")
             self.errors.append("Password must have more than 6 characters")
 
-        if duplicate_emails:
+        if duplicate_emails and not self.id == duplicate_emails.id:
             flash("Email has already been taken")
             self.errors.append("Email has already been taken")
 
