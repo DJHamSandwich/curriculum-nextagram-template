@@ -1,22 +1,13 @@
 import peeweedbevolve
 from flask import Blueprint, render_template, flash, request, redirect, url_for, Flask, session, escape
 from models.base_model import BaseModel
-from models.session import Session
-from models import session
 from models.user import User
 from models import user
 from werkzeug.security import check_password_hash
-
+from flask_login import login_user, logout_user
 
 sessions_blueprint = Blueprint(
     'sessions', __name__, template_folder='templates')
-
-
-# @app.route('/')
-# def index():
-#     if 'username' in session:
-#         return 'Logged in as %s' % escape(session['username'])
-#     return 'You are not logged in'
 
 
 @sessions_blueprint.route('/new', methods=['GET'])
@@ -24,7 +15,7 @@ def new():
     return render_template('sessions/new.html')
 
 
-@sessions_blueprint.route('/new_form', methods=['POST'])
+@sessions_blueprint.route('/new_form', methods=['GET', 'POST'])
 def create():
 
     # password keyed in by the user in the sign in form
@@ -42,8 +33,18 @@ def create():
         flash("Password does not match")
         return redirect(url_for('sessions.new'))
 
-    if user and check_password_hash:
-        flash("Login successfull")
-        # session["user.id"] = user.id
-        return redirect(url_for('sessions.new'))
-    # User is valid and the password given is valid
+    if user and request.method == 'POST':
+        # flash("Login successfull")
+        # session['user_id'] = user.id
+        # return redirect(url_for('sessions.new'))
+
+        login_user(user)
+        flash(f"Welcome back {user.username}! You are now logged in")
+        return redirect(url_for("home"))
+
+
+@sessions_blueprint.route("/logout")
+def logout():
+    logout_user()
+    flash("Successfully logged out. Goodbye!")
+    return redirect(url_for("home"))

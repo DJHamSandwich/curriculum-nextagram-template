@@ -10,7 +10,7 @@ users_blueprint = Blueprint('users',
                             __name__,
                             template_folder='templates')
 
-app = Blueprint('home', __name__)
+# app = Blueprint('home', __name__)
 
 
 @users_blueprint.route('/new', methods=['GET'])
@@ -51,9 +51,9 @@ def update(id):
     pass
 
 
-@app.route("/")
-def home():
-    return render_template("home.html")
+# @app.route("/")
+# def home():
+#     return render_template("home.html")
 
 
 @users_blueprint.route("/user")

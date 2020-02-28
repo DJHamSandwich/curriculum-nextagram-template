@@ -20,3 +20,15 @@ class User(BaseModel):
         if duplicate_emails:
             flash("Email has already been taken")
             self.errors.append("Email has already been taken")
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.id

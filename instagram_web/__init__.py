@@ -1,12 +1,13 @@
 from app import app
 from flask import render_template, Flask, session, redirect, url_for, escape, request
 from instagram_web.blueprints.users.views import users_blueprint
-from instagram_web.blueprints.sessions.views import sessions_blueprint
+from instagram_web.blueprints.sessions.views import sessions_blueprint, create
 from flask_assets import Environment, Bundle
 from .util.assets import bundles
-
-# app = Flask(__name__)
-# app.secret_key = b'\xa3\x7f\x88C\xc8\xa8\x089\x19\x11mz\xf3\xe4\x1f\xa7'
+from models.base_model import BaseModel
+from models.user import User
+from models import user
+from flask_login import LoginManager
 
 
 assets = Environment(app)
@@ -15,6 +16,9 @@ assets.register(bundles)
 app.register_blueprint(users_blueprint, url_prefix="/users")
 
 app.register_blueprint(sessions_blueprint, url_prefix="/sessions")
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 
 @app.errorhandler(500)
@@ -26,15 +30,18 @@ def internal_server_error(e):
 def home():
     return render_template('home.html')
 
-#     if 'User.id' in session:
-#         return 'Logged in as %s' % escape(session['User.id'])
-#     return 'You are not logged in'
-#     else:
-#         return render_template('home.html')
+    # if 'user_id' in session:
+    #     return 'Logged in as %s' % escape(session['user_id'])
+    # return 'You are not logged in'
 
 
 # @app.route('/logout')
 # def logout():
 #     # remove the username from the session if it's there
-#     session.pop('User.id', None)
+#     session.pop('user_id', None)
 #     return redirect(url_for('home'))
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get_or_none(user_id == User.id)

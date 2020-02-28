@@ -12,4 +12,8 @@ Homepage
 <a href="{{url_for('users.new')}}" class="btn">Create a new user</a>
 
 <a href="{{url_for('sessions.new')}}" class="btn">Login</a>
+
+<Form action="{{url_for('sessions.logout')}}">
+    <button type="submit" class="btn btn-primary">Logout</button>
+</Form>
 {% endblock %}
