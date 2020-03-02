@@ -14,7 +14,6 @@ assets = Environment(app)
 assets.register(bundles)
 
 app.register_blueprint(users_blueprint, url_prefix="/users")
-
 app.register_blueprint(sessions_blueprint, url_prefix="/sessions")
 
 login_manager = LoginManager()
@@ -29,17 +28,6 @@ def internal_server_error(e):
 @app.route("/")
 def home():
     return render_template('home.html')
-
-    # if 'user_id' in session:
-    #     return 'Logged in as %s' % escape(session['user_id'])
-    # return 'You are not logged in'
-
-
-# @app.route('/logout')
-# def logout():
-#     # remove the username from the session if it's there
-#     session.pop('user_id', None)
-#     return redirect(url_for('home'))
 
 
 @login_manager.user_loader

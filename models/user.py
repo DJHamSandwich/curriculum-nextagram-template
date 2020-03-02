@@ -1,12 +1,20 @@
 from models.base_model import BaseModel
 from flask import Flask, flash, render_template, request, redirect, url_for
 import peewee as pw
+# from helpers import *
+from playhouse.hybrid import hybrid_property
 
 
 class User(BaseModel):
     username = pw.CharField(unique=True)
     email = pw.CharField(unique=True)
     password = pw.CharField(null=False, unique=False)
+    profile_image = pw.CharField(null=True)
+
+    @hybrid_property
+    def profile_image_url(self):
+        # return AWS_S3_DOMAIN + self.profile_image
+        return f"https://hansnextagram.s3-ap-southeast-1.amazonaws.com/{self.profile_image}"
 
     def validate(self):
         password_length = len(str(request.form.get('password')))

@@ -21,7 +21,11 @@ Homepage
 
 <p>hello {{current_user.username}}</p>
 
+<img src="{{current_user.profile_image_url}}" class="profileImage" />
+
 <a href="{{url_for('users.edit', id=current_user.id)}}" class="btn">Edit profile</a>
+
+<a href="{{url_for('users.upload', id=current_user.id)}}" class="btn">Upload profile image</a>
 
 {% endif %}
 

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Upload your profile image</h2>
+<br>
+<form action="{{url_for('users.upload_image',id=current_user.id)}}" method="POST" enctype="multipart/form-data">
+
+    <label for="user_file">Upload Your File</label>
+    <br></br>
+    <input type="file" name="user_file">
+    <br></br>
+    <button type="submit">Upload</button>
+
+</form>
+
+{%endblock%}
