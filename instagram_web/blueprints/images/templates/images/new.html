@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Make a post</h2>
+<br>
+
+<div class="modal-body">
+
+    <form action="{{url_for('images.create')}}" method="POST" enctype="multipart/form-data">
+
+
+        <label for="image">Choose an image </label>
+        <br></br>
+        <input type="file" name="image">
+
+
+        <div class="form-group">
+            <label for="caption">caption:</label>
+            <input type="text" name="caption" class="form-control" />
+        </div>
+
+
+        <button type="submit">Post</button>
+
+    </form>
+
+
+</div>
+
+
+{%endblock%}

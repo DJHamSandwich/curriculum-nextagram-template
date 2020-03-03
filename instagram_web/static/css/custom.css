@@ -1,8 +1,37 @@
 body {
   margin: 0;
-  padding-bottom: 15px;
+  border: 0;
+  /* padding-bottom: 15px; */
   position: relative;
   min-height: 100vh;
+}
+
+.background {
+  min-height: 100vh;
+  min-width: 100%;
+  max-width: 100%;
+  position: relative;
+  background-color: wheat;
+}
+
+.profileImage{
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #343a40;
+}
+
+.flashes{
+  background-color:wheat;
+}
+
+.image_container{
+  background-color: white;
+  border: 2px solid #343a40;
+  border-radius: 20px;
 }
 
 footer {
@@ -19,3 +48,4 @@ footer a {
   text-decoration: none;
   color: #303030;
 }
+

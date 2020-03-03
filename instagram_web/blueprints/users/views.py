@@ -1,6 +1,8 @@
 import peeweedbevolve
 from flask import Blueprint, render_template, flash, request, redirect, url_for
 from models.base_model import BaseModel
+from models.image import Image
+from models import image
 from models.user import User
 from models import user
 from werkzeug.security import generate_password_hash
@@ -8,9 +10,8 @@ from werkzeug.utils import secure_filename
 from flask_login import login_user, logout_user, login_required, current_user
 from helpers import *
 
-users_blueprint = Blueprint('users',
-                            __name__,
-                            template_folder='templates')
+
+users_blueprint = Blueprint('users', __name__, template_folder='templates')
 
 
 @users_blueprint.route('/new', methods=['GET'])
@@ -31,14 +32,14 @@ def create():
         return render_template('users/new.html')
 
 
-@users_blueprint.route('/<username>', methods=["GET"])
-def show(username):
-    pass
+# @users_blueprint.route('/<username>', methods=["GET"])
+# def show(username):
+#     pass
 
 
-@users_blueprint.route('/', methods=["GET"])
-def index():
-    return "USERS"
+# @users_blueprint.route('/', methods=["GET"])
+# def index():
+#     return "USERS"
 
 
 @users_blueprint.route('/<id>/edit', methods=['GET'])
@@ -92,7 +93,7 @@ def upload(id):
         return redirect(url_for('home'))
 
     if not current_user.id == user.id:  # current_user method is
-        flash('you are not allowed to vieew this page')
+        flash('you are not allowed to view this page')
         return redirect(url_for('home'))
 
     return render_template('users/upload.html', user=user)
@@ -123,3 +124,11 @@ def upload_image(id):
             output = upload_file_to_s3(file)
 
     return redirect(url_for('users.upload', id=user.id))
+
+
+@users_blueprint.route('/', methods=['GET'])
+@login_required
+def show_feed():
+    user = User.select()
+    images = Image.select()
+    return render_template('users/newsfeed.html', user=user, images=images)

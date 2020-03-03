@@ -2,6 +2,8 @@
 {% block content %}
 <h1>{{current_user.username}}'s Profile</h1>
 <h2>Edit Profile</h2>
+<img src="{{current_user.profile_image_url}}" class="profileImage" />
+<a href="{{url_for('users.upload', id=current_user.id)}}" class="btn">Change profile image</a>
 <form action="{{url_for('users.update',id=current_user.id)}}" method="POST">
 
     <div class="form-group">
@@ -17,5 +19,6 @@
     <button type="submit" class="btn btn-primary">Update</button>
 
 </form>
+
 
 {%endblock%}
