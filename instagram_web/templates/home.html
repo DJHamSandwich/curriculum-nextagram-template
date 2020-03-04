@@ -8,22 +8,13 @@ Homepage
 {% endblock %}
 
 {% block content %}
-<h1>Homepage</h1>
+<h1 style="text-align: center;">Homepage</h1>
 
 
 {% if current_user.is_authenticated %}
 
-<p>hello {{current_user.username}}</p>
-
-<img src="{{current_user.profile_image_url}}" class="profileImage" />
-
-<div class="image_container">
-    <div>
-        {% for image in current_user.images %}
-        <img src="{{image.image_url}}">
-        {% endfor %}
-    </div>
-
+<div class="homepage">
+    <h1>Welcome to Nextagram</h1>
 </div>
 
 {% endif %}

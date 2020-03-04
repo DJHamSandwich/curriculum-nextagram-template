@@ -1,25 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h1>News feed</h1>
+<h1 style="text-align: center;">News feed</h1>
 
 <div class="container">
     {% for user in user %}
     {% if user.profile_image %}
 
-    <a href="{{url_for('users.show_feed',username=user.username)}}">
 
-        <br>
-        <img src="{{ user.profile_image_url}}">
-        {{user.username}}
-        <br>
-        <div>
-            {% for image in user.images %}
-            <img src="{{image.image_url}}">
-            {% endfor %}
+    <div class="mainCard">
+        <div class="profileContainer">
+            <a href="{{url_for('users.show_feed',username=user.username)}}">
+                <img src="{{ user.profile_image_url}}" class="profileImage">
+            </a>
+            <p class="username">{{user.username}}</p class="username">
         </div>
+        <hr>
+        {% for image in user.images %}
+        <div class="userImagesCard">
+            <img src="{{image.image_url}}" class="userImages">
+            <p class="captionText">:{{image.caption}}</p>
+        </div>
+        {% endfor %}
+    </div>
 
-    </a>
+
 
 
     {% endif %}

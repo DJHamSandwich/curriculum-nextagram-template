@@ -1,17 +1,60 @@
 body {
   margin: 0;
   border: 0;
-  /* padding-bottom: 15px; */
+  /* padding-bottom:15px; */
   position: relative;
   min-height: 100vh;
 }
 
+footer{
+  position: relative;
+  background-color:transparent;
+  
+}
+.btn{
+  text-decoration: underline;
+  text-align: center;
+}
+
 .background {
+  display: flex;
   min-height: 100vh;
   min-width: 100%;
   max-width: 100%;
+  padding-bottom:30px;
   position: relative;
   background-color: wheat;
+}
+
+.flashes{
+  background-color:wheat;
+}
+
+.mainCard{
+  background-color: white;
+  border: 2px solid #343a40;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  column-count: 4;
+  column-gap: 15px;
+  margin-bottom: 10px;
+}
+
+.homepage{
+  background-color: white;
+  border: 2px solid #343a40;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 50%;
+  height: 50%;
+  margin-top: 10%;
+  
 }
 
 .profileImage{
@@ -21,17 +64,51 @@ body {
   height: 200px;
   overflow: hidden;
   border-radius: 50%;
-  border: 2px solid #343a40;
+  border: 3px solid #343a40;
 }
 
-.flashes{
-  background-color:wheat;
+
+.profileContainer{
+  display: flex;
+  border-bottom: 4px solid #343a40 ;
+  border-right: 4px solid #343a40;
+  border-top: 2px solid #343a40;
+  border-left: 2px solid #343a40;
+  border-radius: 15px;
+  padding: 10px;
+  min-width: 100%;
+  position: relative;
+}
+.username{
+  text-decoration: none #343a40 ;
+  font-weight: 600;
+  font-size: 50px;
+  align-self: center;
+  margin-left: 50px;
+  
 }
 
-.image_container{
-  background-color: white;
+.userImages{
+  margin: 10px;
   border: 2px solid #343a40;
-  border-radius: 20px;
+  border-radius: 10px;
+}
+
+.userImagesCard{
+  border-bottom: 4px solid #343a40 ;
+  border-right: 4px solid #343a40;
+  border-top: 2px solid #343a40;
+  border-left: 2px solid #343a40;
+  border-radius: 15px;
+  margin: 10px;
+  
+}
+
+.captionText{
+  text-decoration: none #343a40 ;
+  font-weight: 500;
+  font-size: 25px;
+  text-align: center;
 }
 
 footer {

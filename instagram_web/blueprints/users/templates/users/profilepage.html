@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+<h1 style="text-align: center;">Profile</h1>
+
+
+{% if current_user.is_authenticated %}
+
+<div class="mainCard">
+    <div class="profileContainer">
+        <img src="{{current_user.profile_image_url}}" class="profileImage" />
+        <p class="username">{{current_user.username}}</p>
+    </div>
+    <hr>
+
+
+    {% for image in current_user.images %}
+    <div class="userImagesCard">
+        <img src="{{image.image_url}}" class="userImages">
+        <p class="captionText">:{{image.caption}}</p>
+    </div>
+    {% endfor %}
+
+
+
+</div>
+
+{% endif %}
+{% endblock %}

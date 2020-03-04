@@ -78,9 +78,9 @@ def update(id):
         return render_template('users/edit.html')
 
 
-# @users_blueprint.route("/user")
-# def user():
-#     return render_template()
+@users_blueprint.route("/user")
+def user():
+    return render_template('users/profilepage.html')
 
 
 @users_blueprint.route("/<id>/upload", methods=['GET'])
