@@ -11,11 +11,14 @@ Homepage
 <h1 style="text-align: center;">Homepage</h1>
 
 
-{% if current_user.is_authenticated %}
 
 <div class="homepage">
     <h1>Welcome to Nextagram</h1>
+    {% if not current_user.is_authenticated %}
+    <br>
+    Login or create a new account
+    {% endif %}
+
 </div>
 
-{% endif %}
 {% endblock %}
