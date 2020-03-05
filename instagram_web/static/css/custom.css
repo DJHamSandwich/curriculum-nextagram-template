@@ -13,7 +13,7 @@ footer{
   
 }
 .btn{
-  text-decoration: underline;
+  text-decoration: none;
   text-align: center;
 }
 
@@ -58,7 +58,7 @@ footer{
   align-self: center;
   width: 50%;
   height: 50%;
-  margin-top: 10%;
+  /* margin-top: 10%; */
   
 }
 

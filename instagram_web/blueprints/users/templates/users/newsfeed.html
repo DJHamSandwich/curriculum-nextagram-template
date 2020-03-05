@@ -21,8 +21,8 @@
 
             <img src="{{image.image_url}}" class="userImages">
 
-            <a href="{{url_for('donations.new', image_id = image.id)}}" class="donateBtn">
-                <button type="submit" class="donateBtn">Donate!</button>
+            <a href="{{url_for('donations.new', image_id = image.id)}}" class="text-center">
+                <button type="submit" class="btn btn-primary ">Donate!</button>
             </a>
 
             <p class="captionText">:{{image.caption}}</p>

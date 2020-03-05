@@ -10,7 +10,9 @@ from models.base_model import BaseModel
 from models.user import User
 from models import user
 from flask_login import LoginManager
-
+import os
+from instagram_web.util.google_oauth import oauth
+import config
 
 assets = Environment(app)
 assets.register(bundles)
@@ -23,6 +25,8 @@ app.register_blueprint(donations_blueprint, url_prefix="/donations")
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+oauth.init_app(app)
 
 
 @app.errorhandler(500)
