@@ -13,9 +13,14 @@ from flask_login import LoginManager
 import os
 from instagram_web.util.google_oauth import oauth
 import config
+from flask_wtf.csrf import CSRFProtect
+
+
+csrf = CSRFProtect(app)
 
 assets = Environment(app)
 assets.register(bundles)
+
 
 app.register_blueprint(users_blueprint, url_prefix="/users")
 app.register_blueprint(sessions_blueprint, url_prefix="/sessions")
@@ -27,6 +32,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 oauth.init_app(app)
+csrf.init_app(app)
 
 
 @app.errorhandler(500)

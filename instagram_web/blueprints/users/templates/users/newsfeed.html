@@ -17,17 +17,20 @@
         </div>
         <hr>
         {% for image in user.images %}
-        <div class="userImagesCard">
+        <div>
+            <div class="userImagesCard">
 
-            <img src="{{image.image_url}}" class="userImages">
+                <img src="{{image.image_url}}" class="userImages">
+                <br>
+                <div style="display: flex; flex-direction: column; text-align: center;">
+                    <small>Donations: RM{{image.total_donations}}</small>
+                    <a href="{{url_for('donations.new', image_id = image.id)}}">
+                        <button type="submit" class="btn btn-primary ">Donate!</button>
+                    </a>
 
-            <a href="{{url_for('donations.new', image_id = image.id)}}" class="text-center">
-                <button type="submit" class="btn btn-primary ">Donate!</button>
-            </a>
-
-            <p class="captionText">:{{image.caption}}</p>
-
-            <small>Donations: RM{{image.total_donations}}</small>
+                    <p class="captionText">:{{image.caption}}</p>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>

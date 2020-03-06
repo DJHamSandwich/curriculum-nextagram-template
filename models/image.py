@@ -7,7 +7,7 @@ from playhouse.hybrid import hybrid_property
 
 class Image(BaseModel):
     caption = pw.CharField(null=True)
-    filename = pw.CharField(null=False)
+    filename = pw.CharField(null=False, unique=False)
     user = pw.ForeignKeyField(User, backref="images")
 
     @hybrid_property

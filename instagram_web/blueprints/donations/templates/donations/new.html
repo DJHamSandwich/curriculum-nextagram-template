@@ -13,6 +13,7 @@
 
     <form id="donationForm" action="{{url_for('donations.create',image_id=image.id)}}" method="POST">
         <!-- get a csrf token somehow -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <input type="hidden" name="payment_method_nonce" id="paymentField">
         <div class="form-group">
             <label for="amount">Amount:</label>

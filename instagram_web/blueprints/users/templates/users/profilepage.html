@@ -17,9 +17,11 @@
 
 
     {% for image in current_user.images %}
-    <div class="userImagesCard">
-        <img src="{{image.image_url}}" class="userImages">
-        <p class="captionText">:{{image.caption}}</p>
+    <div>
+        <div class="userImagesCard">
+            <img src="{{image.image_url}}" class="userImages">
+            <p class="captionText">:{{image.caption}}</p>
+        </div>
     </div>
     {% endfor %}
 

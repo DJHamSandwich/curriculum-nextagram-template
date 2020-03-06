@@ -97,6 +97,7 @@ footer{
   margin: 10px;
   border: 2px solid #343a40;
   border-radius: 10px;
+  max-width: 300px;
 }
 
 .userImagesCard{
@@ -108,8 +109,8 @@ footer{
   margin: 10px;
   display: flex;
   flex-direction: column;
-  min-height: fit-content;
   max-height: fit-content;
+  justify-content: space-between;
 }
 
 .donateCard{
