@@ -4,10 +4,10 @@ from config import Config
 import os
 
 
-# if os.getenv('FLASK_ENV') == 'production':
-#     config = eval("config.ProductionConfig")
-# else:
-#     config = eval("config.DevelopmentConfig")
+if os.getenv('FLASK_ENV') == 'production':
+    config = eval("config.ProductionConfig")
+else:
+    config = eval("config.DevelopmentConfig")
 
 oauth = OAuth()
 
